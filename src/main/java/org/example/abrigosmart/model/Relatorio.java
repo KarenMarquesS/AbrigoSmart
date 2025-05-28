@@ -18,13 +18,13 @@ public class Relatorio {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 5, nullable = false)
-    private EtapaEnum etapa;
+    private AtendimentoEnum etapa;
 
     @PastOrPresent(message = "A data não pode ser futura")
     private LocalDate data_relatorio;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private Usuario gerado_pelo_usuario;
+//    @ManyToOne
+//    @JoinColumn(name = "id_user")
+//    private Usuario gerado_pelo_usuario;
 
 }

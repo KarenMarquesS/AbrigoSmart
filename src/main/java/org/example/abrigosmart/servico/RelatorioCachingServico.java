@@ -2,7 +2,7 @@ package org.example.abrigosmart.servico;
 
 
 import org.example.abrigosmart.dto.RelatorioDTO;
-import org.example.abrigosmart.model.EtapaEnum;
+import org.example.abrigosmart.model.AtendimentoEnum;
 import org.example.abrigosmart.model.Usuario;
 import org.example.abrigosmart.repositorio.RelatorioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import org.example.abrigosmart.model.Relatorio;
 
 @Service
 public class RelatorioCachingServico {
@@ -21,7 +20,7 @@ public class RelatorioCachingServico {
     private RelatorioRepositorio rptR;
 
     @Cacheable(value = "status_por_etapa", key = "#etapa")
-    public List<RelatorioDTO> findyByEtapa(EtapaEnum etapa){
+    public List<RelatorioDTO> findyByEtapa(AtendimentoEnum etapa){
         return rptR.findByEtapa(etapa).stream().map(RelatorioDTO::new).collect(Collectors.toList());
     }
 

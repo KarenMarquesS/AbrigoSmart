@@ -1,6 +1,6 @@
 package org.example.abrigosmart.dto;
 
-import org.example.abrigosmart.model.EtapaEnum;
+import org.example.abrigosmart.model.AtendimentoEnum;
 import org.example.abrigosmart.model.Relatorio;
 import org.example.abrigosmart.model.Usuario;
 
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class RelatorioDTO {
 
     private int id_report;
-    private EtapaEnum etapa;
+    private AtendimentoEnum etapa;
     private LocalDate data_relatorio;
     private Usuario gerado_pelo_usuario;
 
@@ -17,7 +17,7 @@ public class RelatorioDTO {
     public RelatorioDTO() {
     }
 
-    public RelatorioDTO(int id_report, EtapaEnum etapa, LocalDate data_relatorio, Usuario gerado_pelo_usuario) {
+    public RelatorioDTO(int id_report, AtendimentoEnum etapa, LocalDate data_relatorio, Usuario gerado_pelo_usuario) {
         this.id_report = id_report;
         this.etapa = etapa;
         this.data_relatorio = data_relatorio;
@@ -39,11 +39,11 @@ public class RelatorioDTO {
         this.id_report = id_report;
     }
 
-    public EtapaEnum getEtapa() {
+    public AtendimentoEnum getEtapa() {
         return etapa;
     }
 
-    public void setEtapa(EtapaEnum etapa) {
+    public void setEtapa(AtendimentoEnum etapa) {
         this.etapa = etapa;
     }
 

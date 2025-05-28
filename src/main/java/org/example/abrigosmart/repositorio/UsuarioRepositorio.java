@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Integer> {
@@ -25,4 +26,8 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Integer> {
     // Apresenta a lista dos usuários cadastrados em ordem alfabetica
     @Query("from Usuario user order by user.id_user asc")
     public Page<Usuario> findAllOrderByUsuario(Pageable pageable);
+
+    // Busca email do usuário para uso na secretKey
+    @Query("select u from Usuario u where u.email = :email")
+    public Optional<Usuario> buscarPorEmail(@Param("email") String email);
 }

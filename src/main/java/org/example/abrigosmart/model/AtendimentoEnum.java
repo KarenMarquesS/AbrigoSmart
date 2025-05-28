@@ -1,6 +1,6 @@
 package org.example.abrigosmart.model;
 
-public enum EtapaEnum {
+public enum AtendimentoEnum {
 
     VITIMAS, NECESSIDADES, ABRIGO, TRIAGEM
 }

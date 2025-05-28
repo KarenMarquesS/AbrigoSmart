@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Schema(description = "Essa classe representa a entidade nomeada Usuário a qual está " +
-        "diretamente associada a classe/entidade Relatório")
+        "diretamente associada as classes/entidades Vítma e Triagem")
 
 @Data
 @Entity
@@ -22,7 +22,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "seq_report", sequenceName = "sequencia_report", allocationSize = 1)
+    @SequenceGenerator(name = "seq_user", sequenceName = "sequencia_user", allocationSize = 1)
     private int id_user;
 
     @Size(min = 20, max = 150)
@@ -42,6 +42,11 @@ public class Usuario {
     private String senha;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Relatorio> gera_report;
+    private List<Triagem> triagens;
+
+
+
+    //@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    //private List<Relatorio> gera_report;
 
 }
