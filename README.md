@@ -113,7 +113,7 @@ src
 
 
 ## 👥 Desenvolvedores
-           Nome	              RM                GitHub
+           Nome	           RM                GitHub
     Fernanda Budniak de Seda  558274      https://github.com/Febudniak
     Lucas Lerri de Almeida    554635      https://github.com/lerri05
     Karen Marques dos Santos  554556      https://github.com/KarenMarquesS
