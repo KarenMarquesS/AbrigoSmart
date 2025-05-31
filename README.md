@@ -55,6 +55,7 @@
 A aplicação conta com uma interface interativa gerada pelo Swagger, permitindo testar os endpoints diretamente pelo navegador.
   - Acesse: `http://localhost:8080/swagger-ui.html`
   - Rotas de Acesso
+    
   ![image](https://github.com/user-attachments/assets/a94ab4d5-d22e-4b21-808c-36f0c85f62b6)
 
 
