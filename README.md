@@ -1,6 +1,5 @@
-# ![image](https://github.com/user-attachments/assets/670ca052-f736-4da2-b4a8-8ecd9ddb669a)
-AbrigoSmart
-        Assitente Virtual para Gerenciamento em Desastres Naturais.
+# ![image](https://github.com/user-attachments/assets/670ca052-f736-4da2-b4a8-8ecd9ddb669a) AbrigoSmart
+ Assitente Virtual para Gerenciamento em Desastres Naturais.
 
 
                                          “Quando o desastre chega, cada segundo conta. E cada vida importa.”
