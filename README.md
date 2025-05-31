@@ -3,7 +3,7 @@
 
                                          “Quando o desastre chega, cada segundo conta. E cada vida importa.”
 
-## ![image](https://github.com/user-attachments/assets/3f00d26e-60e7-4a0f-922b-fe5a16da8400) Missão
+## ![image](https://github.com/user-attachments/assets/718d5a02-3963-46a6-83c8-2572fe4482d6) Missão
   Oferecer acolhimento digno, seguro e eficiente às vítimas de desastres, por meio da tecnologia e da inteligência artificial, otimizando a triagem, a gestão de recursos e a coordenação entre equipes de resposta humanitária.
 
 
