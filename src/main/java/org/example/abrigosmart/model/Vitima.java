@@ -18,10 +18,14 @@ public class Vitima {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_vitima;
 
+    @Column(name = "nome", length = 255)
     private String nome;
 
+    @Column(name = "idade", columnDefinition = "INT")
     private int idade;
 
+    @Column(name = "sexo", columnDefinition = "SMALLINT")
+    @Enumerated(EnumType.ORDINAL)
     private GeneroEnum sexo;
 
     @OneToOne(cascade = CascadeType.ALL)

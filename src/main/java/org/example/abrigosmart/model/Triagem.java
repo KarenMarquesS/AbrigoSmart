@@ -20,12 +20,18 @@ public class Triagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_triagem;
 
+    @Column(name = "prioridade", columnDefinition = "SMALLINT")
+    @Enumerated(EnumType.ORDINAL)
     private PrioriEnum prioridade;
 
+    @Column(name = "estado_saude", length = 255)
     private String estado_saude;
 
+    @Column(name = "classificacao", columnDefinition = "INT", nullable = false)
     private int classificacao;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_triagem", columnDefinition = "DATE")
     private LocalDate data_triagem;
 
     @ManyToOne
