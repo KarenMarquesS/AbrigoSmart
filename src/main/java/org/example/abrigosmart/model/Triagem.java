@@ -17,8 +17,7 @@ import java.time.LocalDate;
 public class Triagem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "seq_triagem", sequenceName = "sequecia_triagem", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_triagem;
 
     private PrioriEnum prioridade;

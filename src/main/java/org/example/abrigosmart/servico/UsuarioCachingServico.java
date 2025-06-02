@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioCachingServico {
@@ -25,20 +26,19 @@ public class UsuarioCachingServico {
 
     @Cacheable(value ="usuario_id", key = "#id_user")
     public Optional<Usuario> findByIdUsuario(int id_user) {
-        return Optional.ofNullable(userR.findByIdUsuario(id_user));
+        return userR.findById(id_user);
     }
 
-    @Cacheable(value = "usuario_paginado_funcao", key = "#funcao")
-    public Page<Usuario> findByFuncao(FuncaoEnum funcao, Pageable pageable) {
-        List<Usuario> listUsuario = userR.findByFuncao(funcao);
-        int start = (int) pageable.getOffset();
-        int end = Math.min(start + pageable.getPageSize(), listUsuario.size());
-        return new PageImpl<>(listUsuario.subList(start, end), pageable, listUsuario.size());
+    @Cacheable(value = "usuario_por_funcao", key = "#funcaoName()")
+    public Page<Usuario> usuarioPorFuncao(PageRequest req) {
+        Page<Usuario> usuario = userR.findAll(req);
+
+        return usuario;
     }
 
     @Cacheable(value = "usuario_por_ordem", key = "'page_' + #pageable.pageNumber + '_size_' + #pageable.pageSize")
     public Page<Usuario> findAllOrderByUsuario(Pageable pageable) {
-        return userR.findAllOrderByUsuario(pageable);
+        return userR.findAllOrderByNome(pageable);
     }
 
     @CacheEvict(value = {"usuario_id", "usuario_paginado_funcao", "usuario_por_ordem"}, allEntries = true)

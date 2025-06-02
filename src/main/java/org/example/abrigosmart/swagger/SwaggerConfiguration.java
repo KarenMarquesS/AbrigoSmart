@@ -15,7 +15,6 @@ public class SwaggerConfiguration {
         return new OpenAPI().info(new Info()
                 .title("O AbrigoSmart - Assitente Virtual de Gestão de Abrigo temporário")
                 .description("Esta aplicação tem por objetivo otimizar o processo de triagem de vítmas de desastres naturais")
-                .summary("Esta aplicação tem por objetivo otimizar o processo de triagem de vítmas de desastres naturais")
                 .version("v1.0.0")
                 .license(new License().url("www.fiap.com.br")
                         .name("Licença - Projeto de Gestão Abrigo Temporário - v1.0.0"))

@@ -34,32 +34,35 @@ public class UsuarioController {
     @Operation(description = "Este endpoint realiza a inserção de um novo usuário",
             tags = "Inserção de usuário", summary = "Este endpoint realiza a inserção de um novo usuário")
     @PostMapping(value = "/inserir")
-    public Usuario inserirUsuario(@RequestBody Usuario user){
-        userR.save(user);
-        userC.limparCachingUsuario();
-
-//        user.add(linkTo(methodOn(this.getClass()).retornaTodasMusicasCacheable())
-//                .withRel("Listar todas as músicas: "));
-//        user.add(linkTo(methodOn(this.getClass()).atualizarUsuario(null, user.getId()))
-//                .withRel("Gostaria de atualizar a música adicionada? Clique abaixo"));
-//        user.add(linkTo(methodOn(this.getClass()).removerUsuario(user.getId()))
-//                .withRel("Gostaria de remover a música adicionada? Clique abaixo"));
-
-        return user;
-    }
-
-
-    @GetMapping(value = "/{id)user}")
-    public Usuario buscaPorId(@PathVariable int id_user){
-        Optional<Usuario> usuario = userR.findById(id_user);
-        if(usuario.isPresent()){
-            return usuario.get();
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    public Usuario inserirUsuario(@RequestBody Usuario user) {
+        try {
+            userR.save(user);
+            userC.limparCachingUsuario();
+            return user;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ">> Erro ao inserir usuário <<", e);
         }
     }
 
 
+    @GetMapping(value = "/{id_user}")
+    public Usuario findByIdUsuario(@PathVariable int id_user){
+        return userC.findByIdUsuario(id_user)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping(value = "/funcaopaginado")
+    public ResponseEntity <Page<Usuario>> usuarioPorFuncao(
+            @RequestParam (value = "pagina", defaultValue = "0") Integer page,
+            @RequestParam (value = "tamanho", defaultValue = "3") Integer size){
+
+        try {
+            PageRequest req = PageRequest.of(page, size);
+            return ResponseEntity.ok(userC.usuarioPorFuncao(req));
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ">> Parâmetros de paginação inválidos <<", e);
+        }
+    }
 
     @PutMapping(value = "/atualizar/{id_user}")
     public Usuario atualizarUsuario(@RequestBody Usuario user, @PathVariable int id_user) {
@@ -84,47 +87,31 @@ public class UsuarioController {
 
 
     @GetMapping("/paginado")
-    public Page<Usuario> paginadoUsuariosOrdenados(
+    public Page<Usuario> findAllOrderByUsuario(
             @RequestParam(value ="pagina", defaultValue = "0") int page,
-            @RequestParam(value ="tamanho", defaultValue = "10") int size,
-            @RequestParam(value ="usuario", defaultValue = "id_user") String sort) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort).ascending());
-        return userC.findAllOrderByUsuario(pageable);
-
-
-//        Page<MusicaDTO> musicas_paginadas = servM.paginar(req);
-//
-//        musicas_paginadas.forEach(mus -> {
-//
-//            mus.add(linkTo(methodOn(MusicaController.class).buscaPorID(mus.getId()))
-//                    .withRel("Gostaria de ver mais detalhes sobre esta música " + mus.getTitulo() + "? Clique abaixo"));
-//
-//            mus.add(linkTo(methodOn(this.getClass()).retornaMusicasPorArtista(null))
-//                    .withRel("Gostaria de buscar músicas por nome de artista? Clique abaixo"));
-//
-//            mus.add(linkTo(methodOn(this.getClass()).inserirMusica(null))
-//                    .withRel("Gostaria de inserir um nova música? Clique abaixo"));
-//
-//            mus.add(linkTo(methodOn(IntegranteController.class).retornaIntegrantePorSubstring(null))
-//                    .withRel("Gostaria de buscar integrante por substring? Clique abaixo"));
-//
-//        });
-
-       // return ResponseEntity.ok(musicas_paginadas);
-
-
+            @RequestParam(value ="tamanho", defaultValue = "3") int size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            return userC.findAllOrderByUsuario(pageable);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ">> Parâmetros de paginação ou ordenação inválidos <<", e);
+        }
     }
 
 
     @GetMapping(value = "/funcao")
-    public ResponseEntity<Page<Usuario>> listaUsuarioFuncao(@RequestParam("funcao") FuncaoEnum funcao, Pageable pageable){
-        Page<Usuario> u = userR.findByFuncao(funcao, pageable);
-
-        return ResponseEntity.ok(u);
+    public ResponseEntity<Page<Usuario>> listaUsuarioFuncao(@RequestParam("funcao") String funcaoStr, Pageable pageable) {
+        try {
+            FuncaoEnum funcao = FuncaoEnum.valueOf(funcaoStr.toUpperCase());
+            Page<Usuario> u = userR.findByFuncaoPaginado(funcao, pageable);
+            return ResponseEntity.ok(u);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Função inválida: " + funcaoStr, e);
+        }
     }
 
-
-
+    @Operation(description = "Este endpoint realiza a remoção de um usuário a partir do ID informado",
+            tags = "Remoção de usuário", summary = "Remove uma vítima do usuário")
     @DeleteMapping(value = "/{id_user}")
     public Usuario removerUsuario(@PathVariable int id_user) {
         Optional<Usuario> u = userR.findById(id_user);

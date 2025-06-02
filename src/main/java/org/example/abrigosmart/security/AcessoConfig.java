@@ -1,115 +1,41 @@
 package org.example.abrigosmart.security;
 
 
+import org.example.abrigosmart.model.Usuario;
+import org.example.abrigosmart.repositorio.UsuarioRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 @Configuration
 public class AcessoConfig {
 
+    @Autowired
+    private UsuarioRepositorio userR;
+
     @Bean
     UserDetailsService acessoUser() {
 
-        UserDetailsService acesso =
-                new InMemoryUserDetailsManager(User
-                        .withUsername("voluntario")
-                        .password("{noop}2805")
-                        .roles("USER")
-                        .build());
-        return acesso;
+      return email -> {
+          Usuario usuario = userR.buscarPorEmail(email)
+                  .orElseThrow(() -> new UsernameNotFoundException(">> E-mail não cadastrado <<"));
+
+          return User.builder().username(usuario.getEmail())
+                  .password(usuario.getSenha())
+                  .roles("USER")
+                  .build();
+      };
     }
-}
-
-
-/*
-* Para usar o email cadastrado, no login de acesso, o GPT sugeriu esse código, mas não sei se faz sentido
-*
-*
-* @Service
-public class UsuarioDetailsService implements UserDetailsService {
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Email não encontrado"));
-        return new UsuarioDetails(usuario); // UsuarioDetails deve implementar UserDetails
-    }
-}
-*
-*
-*@Configuration
-public class SegurancaConfig {
-
-    @Autowired
-    private JWTAuthFilter jwtAuthFilter;
-
-    @Autowired
-    private UsuarioDetailsService usuarioDetailsService;
-
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
-    @Bean
-    SecurityFilterChain filtrarRota(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(request ->
-                request.requestMatchers("/**").permitAll()
-                       .anyRequest().authenticated())
-            .userDetailsService(usuarioDetailsService)
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .sessionManagement(servidor ->
-                servidor.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 }
 
-*
-*
-*public class UsuarioDetails implements UserDetails {
 
-    private final Usuario usuario;
-
-    public UsuarioDetails(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRole().name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return usuario.getSenha();
-    }
-
-    @Override
-    public String getUsername() {
-        return usuario.getEmail(); // Aqui o login será via email
-    }
-
-    @Override public boolean isAccountNonExpired() { return true; }
-    @Override public boolean isAccountNonLocked() { return true; }
-    @Override public boolean isCredentialsNonExpired() { return true; }
-    @Override public boolean isEnabled() { return true; }
-}
-
-*
-*
-*
-*
-*
-* */

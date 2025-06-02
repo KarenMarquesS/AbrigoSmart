@@ -1,10 +1,13 @@
 package org.example.abrigosmart.dto;
 
 import org.example.abrigosmart.model.FuncaoEnum;
-import org.example.abrigosmart.model.Relatorio;
+import org.example.abrigosmart.model.Triagem;
+import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 
+@Component
 public class UsuarioDTO {
 
     private int id_user;
@@ -12,22 +15,21 @@ public class UsuarioDTO {
     private FuncaoEnum funcao;
     private String email;
     private String senha;
-    private List<Relatorio> gera_report;
+    private List<Triagem> triagens;
+
 
 
     public UsuarioDTO() {
     }
 
-
-    public UsuarioDTO(int id_user, String nome_completo, FuncaoEnum funcao, String email, String senha, List<Relatorio> gera_report) {
+    public UsuarioDTO(int id_user, String nome_completo, FuncaoEnum funcao, String email, String senha, List<Triagem> triagens) {
         this.id_user = id_user;
         this.nome_completo = nome_completo;
         this.funcao = funcao;
         this.email = email;
         this.senha = senha;
-        this.gera_report = gera_report;
+        this.triagens = triagens;
     }
-
 
     public int getId_user() {
         return id_user;
@@ -69,11 +71,11 @@ public class UsuarioDTO {
         this.senha = senha;
     }
 
-    public List<Relatorio> getGera_report() {
-        return gera_report;
+    public List<Triagem> getTriagens() {
+        return triagens;
     }
 
-    public void setGera_report(List<Relatorio> gera_report) {
-        this.gera_report = gera_report;
+    public void setTriagens(List<Triagem> triagens) {
+        this.triagens = triagens;
     }
 }

@@ -28,7 +28,11 @@ public class SegurancaConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request ->
-                request.requestMatchers("/**").permitAll().anyRequest().authenticated())
+                request.requestMatchers("/usuario/{id_user}", "/usuario/{id_user}", "/usuario/paginado",
+                                "/usuario/funcao", "/vitima/vitimaporidade", "/vitima/todasvitimas",
+                            "/triagem/{id_triagem}", "/triagem/comInfo/{id_triagem}", "/triagem/classificacao",
+                            "/triagem/prioridade", "/triagem/paginadas_estado", "/triagem/paginadas_data")
+                        .permitAll().anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(servidor ->
                  servidor.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

@@ -17,17 +17,18 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Integer> {
 
     // Busca usuário pelo ID
     @Query("from Usuario user where user.id_user = :id_user")
-    public Usuario findByIdUsuario(@Param("id_user")int id_user);
+    public Usuario findByIdUsuario(@Param("id_user") int id_user);
 
-    // Busca usuários pela função
-    @Query("from Usuario user where user.funcao = :funcao")
-    public List<Usuario> findByFuncao(@Param("funcao")FuncaoEnum funcao);
+    // Busca usuários pela função, com paginação
+    @Query("select user from Usuario user where user.funcao = :funcao order by user.id_user asc")
+    public Page<Usuario> findByFuncaoPaginado(@Param("funcao") FuncaoEnum funcao, Pageable pageable);
 
-    // Apresenta a lista dos usuários cadastrados em ordem alfabetica
-    @Query("from Usuario user order by user.id_user asc")
-    public Page<Usuario> findAllOrderByUsuario(Pageable pageable);
+    // Apresenta a lista dos usuários cadastrados em ordem alfabética (sem filtro)
+    @Query("from Usuario user order by user.nome_completo asc")
+    public Page<Usuario> findAllOrderByNome(Pageable pageable);
 
     // Busca email do usuário para uso na secretKey
     @Query("select u from Usuario u where u.email = :email")
     public Optional<Usuario> buscarPorEmail(@Param("email") String email);
 }
+

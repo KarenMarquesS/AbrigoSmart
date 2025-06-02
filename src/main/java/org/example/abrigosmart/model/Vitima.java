@@ -15,8 +15,7 @@ import lombok.Data;
 public class Vitima {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "seq_vitima", sequenceName = "sequencia_vitima", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_vitima;
 
     private String nome;
@@ -28,8 +27,5 @@ public class Vitima {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_triagem")
     private Triagem triagem;
-
-
-
 
 }
