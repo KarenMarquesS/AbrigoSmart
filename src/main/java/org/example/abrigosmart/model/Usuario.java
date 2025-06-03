@@ -3,10 +3,7 @@ package org.example.abrigosmart.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.util.List;
@@ -31,14 +28,15 @@ public class Usuario {
 
     @Schema(description = "Nesta coluna pode-se encontrar as funções cadastradas para as pessoas envolvidas no" +
             "atendimento das vítmas")
-    @Column(name = "funcao", columnDefinition = "SMALLINT")
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "funcao")
+    @Enumerated(EnumType.STRING)
     private FuncaoEnum funcao;
 
-    @Email(message = "Informe um e-mail válido")
+    @NotNull(message = "Informe um e-mail válido")
     @Column(name = "email", length = 255)
     private String email;
 
+    @NotNull(message = "Necessário inserir a senha" )
     @Size(min = 5, max = 8, message = "A senha deve conter entre 5 a 8 caracteres")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).+$",
             message = "A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial")

@@ -21,11 +21,11 @@ public class Vitima {
     @Column(name = "nome", length = 255)
     private String nome;
 
-    @Column(name = "idade", columnDefinition = "INT")
+    @Column(name = "idade")
     private int idade;
 
-    @Column(name = "sexo", columnDefinition = "SMALLINT")
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "sexo")
+    @Enumerated(EnumType.STRING)
     private GeneroEnum sexo;
 
     @OneToOne(cascade = CascadeType.ALL)
