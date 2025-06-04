@@ -1,6 +1,6 @@
 # ![image](https://github.com/user-attachments/assets/670ca052-f736-4da2-b4a8-8ecd9ddb669a) AbrigoSmart - Assitente Virtual de Gestão de Abrigo Temporário
 
-                                         “Quando o desastre chega, cada segundo conta. E cada vida importa.”
+                              “Quando o desastre chega, cada segundo conta. E cada vida importa.”
 
 ## ![image](https://github.com/user-attachments/assets/718d5a02-3963-46a6-83c8-2572fe4482d6) Missão
   Oferecer acolhimento digno, seguro e eficiente às vítimas de desastres, por meio da tecnologia e da inteligência artificial, otimizando a triagem, a gestão de recursos e a coordenação entre equipes de resposta humanitária.
