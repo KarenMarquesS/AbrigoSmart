@@ -6,15 +6,15 @@ insert into usuario (nome_completo, funcao, email, senha) values ('Marcos Lima',
 insert into usuario (nome_completo, funcao, email, senha) values ('João Pedro Diniz', 'PROFISSIONAL', 'jpdiniz@email.com', 'Senha@10');
 
 
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('BAIXA', 'Gripe leve', 1, '2025-05-30', 3);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('ALTA', 'Pressão arterial elevada', 5, '2025-05-30', 1);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('MEDIA', 'Dor abdominal moderada', 3, '2025-05-30', 2);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('ALTA', 'Fratura exposta', 5, '2025-05-29', 4);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('MEDIA', 'Febre e tosse', 2, '2025-05-29', 5);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('BAIXA', 'Dor de cabeça', 1, '2025-05-29', 6);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('ALTA', 'Dificuldade respiratória', 5, '2025-05-28', 7);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('MEDIA', 'Corte superficial', 2, '2025-05-28', 8);
-INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('BAIXA', 'Dor nas costas leve', 1, '2025-05-28', 9);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('BAIXA', 'Gripe leve', 1, '30/05/25', 3);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('ALTA', 'Pressão arterial elevada', 5, '30/05/25', 1);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('MEDIA', 'Dor abdominal moderada', 3, '30/05/25', 2);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('ALTA', 'Fratura exposta', 5, '29/05/25', 4);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('MEDIA', 'Febre e tosse', 2, '29/05/25', 5);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('BAIXA', 'Dor de cabeça', 1, '29/05/25', 6);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('ALTA', 'Dificuldade respiratória', 5, '28/05/25', 7);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('MEDIA', 'Corte superficial', 2, '28/05/25', 8);
+INSERT INTO triagem (prioridade, estado_saude, classificacao, data_triagem, id_usuario) VALUES ('BAIXA', 'Dor nas costas leve', 1, '28/05/25', 9);
 
 
 INSERT INTO Vitima (nome, idade, sexo, id_triagem) VALUES ('Ana Souza', 30, 'F', 1);

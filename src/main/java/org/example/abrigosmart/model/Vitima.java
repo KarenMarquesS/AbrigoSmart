@@ -18,7 +18,7 @@ public class Vitima {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_vitima;
 
-    @Column(name = "nome", length = 255)
+    @Column(name = "nome")
     private String nome;
 
     @Column(name = "idade")

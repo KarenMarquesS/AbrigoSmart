@@ -23,7 +23,7 @@ public class Usuario {
 
     @Size(min = 20, max = 150)
     @NotBlank(message = "Nome Completo é OBRIGATÓRIO")
-    @Column(name = "nome_completo", length = 150, nullable = false)
+    @Column(name = "nome_completo", nullable = false)
     private String nome_completo;
 
     @Schema(description = "Nesta coluna pode-se encontrar as funções cadastradas para as pessoas envolvidas no" +
@@ -33,7 +33,7 @@ public class Usuario {
     private FuncaoEnum funcao;
 
     @NotNull(message = "Informe um e-mail válido")
-    @Column(name = "email", length = 255)
+    @Column(name = "email")
     private String email;
 
     @NotNull(message = "Necessário inserir a senha" )

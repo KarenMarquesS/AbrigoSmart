@@ -24,7 +24,7 @@ public class Triagem {
     @Enumerated(EnumType.STRING)
     private PrioriEnum prioridade;
 
-    @Column(name = "estado_saude", length = 255)
+    @Column(name = "estado_saude")
     private String estado_saude;
 
     @Column(name = "classificacao", nullable = false)
