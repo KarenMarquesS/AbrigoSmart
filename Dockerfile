@@ -1,39 +1,35 @@
-# Etapa 1: Build da aplicação
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
+# Etapa 1: build usando imagem do Maven
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 
+# Cria diretório para a aplicação
 WORKDIR /app
 
 # Copia os arquivos do projeto
-COPY pom.xml .
-COPY src ./src
+COPY . .
 
-# Compila o projeto e gera o JAR
+# Compila o projeto e gera um JAR
 RUN mvn clean package -DskipTests
 
-# Etapa 2: Imagem leve para execução
-FROM eclipse-temurin:17-jdk-alpine
+# Etapa 2: runtime usando imagem leve do JDK
+FROM eclipse-temurin:17-jre-alpine
 
-#Cria o usuário não root  'devforge'
-RUN adduser -h /home/abg -s /bin/bash -D abg
+# Cria usuário com diretório home e shell bash
+RUN adduser -h /home/abg -s /bin/sh -D abg
 
-# Define o diretório para o não root
+# Diretório do app
 WORKDIR /home/abg
 
-# Copia do .jar gerado no build
-COPY --from=builder /app/target/AbrigoSmart-0.0.1-SNAPSHOT.jar app.jar
+# Copia o JAR gerado da etapa de build
+COPY --from=builder /app/target/*.jar app.jar
 
-# Altera a permissão do .jar para o usuario
+# Altera a permissão do JAR para o usuário
 RUN chown abg:abg app.jar
 
-# Usuário não root
+# Alterna para o usuário não root
 USER abg
 
-# Expõe a porta usada pelo Spring Boot
+# Exposição da porta padrão do Spring Boot
 EXPOSE 8080
 
 # Comando para rodar o JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
-
-
-

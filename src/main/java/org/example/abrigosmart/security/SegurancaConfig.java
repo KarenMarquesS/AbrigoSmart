@@ -28,7 +28,7 @@ public class SegurancaConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request ->
-                request.requestMatchers("/usuario/{id_user}", "/usuario/{id_user}", "/usuario/paginado",
+                request.requestMatchers("/autenticacao/login","/swagger-ui/index.html","/usuario/{id_user}", "/usuario/{id_user}", "/usuario/paginado",
                                 "/usuario/funcao", "/vitima/vitimaporidade", "/vitima/todasvitimas",
                             "/triagem/{id_triagem}", "/triagem/comInfo/{id_triagem}", "/triagem/classificacao",
                             "/triagem/prioridade", "/triagem/paginadas_estado", "/triagem/paginadas_data")
