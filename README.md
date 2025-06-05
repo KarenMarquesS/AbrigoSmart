@@ -19,9 +19,13 @@
   
 
 ## 🚀 Funcionalidades
-- **Gerenciamento**:
-  - Triagem de Vítimas
-  - Insumos alimentícios e estrutural(roupas, colchões, etc)
+- **Login e Cadastro de Usuários** (Voluntário, Profissional ou Admin)
+- **Triagem Automatizada**:
+  - Cadastro de vítimas com dados básicos
+  - Registro do estado de saúde e necessidades
+- **Organização por Prioridade e Vulnerabilidade**:
+  - Classificação automática com base em critérios definidos
+- **Listagem, edição e detalhamento de vítimas**
   
 
 
