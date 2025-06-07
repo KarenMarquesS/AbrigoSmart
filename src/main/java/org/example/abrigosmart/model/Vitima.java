@@ -1,6 +1,7 @@
 package org.example.abrigosmart.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Vitima {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_triagem")
+    @JsonBackReference
     private Triagem triagem;
 
 }

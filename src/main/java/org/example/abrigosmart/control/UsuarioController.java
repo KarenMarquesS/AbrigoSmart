@@ -35,13 +35,13 @@ public class UsuarioController {
             tags = "Inserção de usuário", summary = "Este endpoint realiza a inserção de um novo usuário")
     @PostMapping(value = "/inserir")
     public Usuario inserirUsuario(@RequestBody Usuario user) {
-        try {
+//        try {
             userR.save(user);
             userC.limparCachingUsuario();
             return user;
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ">> Erro ao inserir usuário <<", e);
-        }
+//        } catch (Exception e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ">> Erro ao inserir usuário <<", e);
+//        }
     }
 
 

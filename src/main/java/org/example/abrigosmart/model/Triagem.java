@@ -1,6 +1,8 @@
 package org.example.abrigosmart.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -36,9 +38,11 @@ public class Triagem {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
+    @JsonBackReference
     private Usuario usuario;
 
     @OneToOne(mappedBy = "triagem")
+    @JsonManagedReference
     private Vitima vitima;
 
 }

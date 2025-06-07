@@ -1,6 +1,7 @@
 package org.example.abrigosmart.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -21,7 +22,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_user;
 
-    @Size(min = 20, max = 150)
+    @Size(min = 2, max = 150)
     @NotBlank(message = "Nome Completo é OBRIGATÓRIO")
     @Column(name = "nome_completo", nullable = false)
     private String nome_completo;
@@ -37,13 +38,14 @@ public class Usuario {
     private String email;
 
     @NotNull(message = "Necessário inserir a senha" )
-    @Size(min = 5, max = 8, message = "A senha deve conter entre 5 a 8 caracteres")
+    @Size(min = 5, max = 10, message = "A senha deve conter entre 5 a 8 caracteres")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).+$",
             message = "A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial")
     @Column(name = "senha", length = 8, nullable = false)
     private String senha;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Triagem> triagens;
 }
 

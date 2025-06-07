@@ -29,7 +29,7 @@ public class UsuarioCachingServico {
         return userR.findById(id_user);
     }
 
-    @Cacheable(value = "usuario_por_funcao", key = "#funcaoName()")
+    @Cacheable(value = "usuario_por_funcao",  key = "'pagina:' + #req.pageNumber + '-tamanho:' + #req.pageSize")
     public Page<Usuario> usuarioPorFuncao(PageRequest req) {
         Page<Usuario> usuario = userR.findAll(req);
 
